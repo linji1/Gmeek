@@ -104,7 +104,7 @@ class GMEEK():
             self.blogBase["ogImage"]=self.blogBase["avatarUrl"]
 
         if "primerCSS" not in self.blogBase:
-            self.blogBase["primerCSS"]="<link href='https://fastly.jsdelivr.net/gh/gjken/gjkdemo.github.io@main/static/primer.min.css' rel='stylesheet' />"
+            self.blogBase["primerCSS"]="<link href='https://raw.githubusercontent.com/GJKen/demo/refs/heads/main/static/primer.min.css' rel='stylesheet' />"
 
         if "homeUrl" not in self.blogBase:
             if str(self.repo.name).lower() == (str(self.repo.owner.login) + ".github.io").lower():

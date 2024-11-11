@@ -104,7 +104,7 @@ class GMEEK():
             self.blogBase["ogImage"]=self.blogBase["avatarUrl"]
 
         if "primerCSS" not in self.blogBase:
-            self.blogBase["primerCSS"]="<link #href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />"
+            #self.blogBase["primerCSS"]="<link #href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />"
             self.blogBase["primerCSS"]="<link href='https://gjken.github.io/demo/primer.css' rel='stylesheet' />"
 
         if "homeUrl" not in self.blogBase:

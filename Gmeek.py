@@ -173,6 +173,7 @@ class GMEEK():
                     issue["style"] += (
                         f'<style>.markdown-alert.markdown-alert-{alert} {{'
                         f'border-left-color:var(--borderColor-{style}-emphasis, var(--color-{style}-emphasis));'
+						f'border-radius:6px;'
                         f'background-color:var(--color-{style}-subtle);}}'
                         f'.markdown-alert.markdown-alert-{alert} .markdown-alert-title {{'
                         f'color: var(--fgColor-{style},var(--color-{style}-fg));}}</style>'

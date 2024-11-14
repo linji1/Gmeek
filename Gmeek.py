@@ -179,7 +179,7 @@ class GMEEK():
                         f'color: var(--fgColor-{style},var(--color-{style}-fg));}}</style>'
                     )
         
-        # 增加<>
+        # 原本的特殊标签增加小括号判断:<>, 缩小匹配范围
         if '<code class="notranslate">Gmeek-html' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 

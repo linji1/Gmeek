@@ -78,6 +78,11 @@
 
 {% block script %}
 <script>
+const lazyImage = new LazyImage('.lazy-load-image');
+lazyImage.observeWithIntersectionObserver();
+lazyImage.placeholderImage = 'placeholder.jpg';
+lazyImage.init();
+
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 {% if blogBase['showPostSource']==1 %}document.getElementById("pathIssue").setAttribute("d",IconList["github"]);{% endif %}
 {% if blogBase['commentNum']>0 -%}

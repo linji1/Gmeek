@@ -41,6 +41,10 @@
 {{ blogBase['style'] }}
 
 {% endblock %}
+
+{% block body_class %}article{% endblock %}
+{% block header_class %}article-header{% endblock %}
+
 {% block header %}
 <h1 class="postTitle">{{ blogBase['postTitle'] }}</h1>
 <div class="title-right">

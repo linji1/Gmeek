@@ -14,7 +14,9 @@
 
 {% block style %}
 <style>
-.postTitle{margin: auto 0;font-size:35px;font-weight:bold;}
+:root{--postTitle-textshadow: #ffffff80;}
+[data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadow: #00000080;}
+.postTitle{margin: auto 0;font-size: 35px;text-shadow: 0 1px 2px var(--postTitle-textshadow);font-weight: bold;display: inline-block;white-space: nowrap;overflow: hidden;width: auto;max-width: -webkit-fit-content;max-width: fit-content;border-right: 2px solid var(--fgColor-default,var(--color-fg-default));animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;-webkit-animation: typing 2s steps(20) 1s forwards, blink 0.75s step-end infinite;}@keyframes typing {from {width: 0;}to {width: 100%;}}@keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}@-webkit-keyframes typing {from {width: 0;}to {width: 100%;}}@-webkit-keyframes blink {50% {border-color: transparent;}100% {border-color: var(--fgColor-default,var(--color-fg-default));}}
 .title-right .circle{padding: 14px 16px;}
 #postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
 #postBody hr{height:2px;}
@@ -44,6 +46,7 @@
 
 {% block body_class %}article{% endblock %}
 {% block header_class %}article-header{% endblock %}
+{% block header_class %}article-content{% endblock %}
 
 {% block header %}
 <h1 class="postTitle">{{ blogBase['postTitle'] }}</h1>

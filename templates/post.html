@@ -138,6 +138,17 @@ function iFrameLoading(){
 {%- endif %}
 
 {% if blogBase['highlight']!=0 -%}
+
+const blurText = document.querySelector(".spoilerText");
+if (!blurText) return;
+blurText.addEventListener("click", (event) => {
+	blurText.classList.remove("spoiled");
+	event.stopPropagation();
+});
+document.addEventListener("click", () => {
+	blurText.classList.add("spoiled");
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>

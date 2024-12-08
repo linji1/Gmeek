@@ -139,16 +139,17 @@ function iFrameLoading(){
 
 {% if blogBase['highlight']!=0 -%}
 
-const blurText = document.querySelector(".spoilerText");
-blurText.addEventListener("click", (event) => {
-	blurText.classList.remove("spoiled");
-	event.stopPropagation();
-});
-document.addEventListener("click", () => {
-	blurText.classList.add("spoiled");
-});
-
 document.addEventListener('DOMContentLoaded', () => {
+
+	const blurText = document.querySelector(".spoilerText");
+	blurText.addEventListener("click", (event) => {
+		blurText.classList.remove("spoiled");
+		event.stopPropagation();
+	});
+	document.addEventListener("click", () => {
+		blurText.classList.add("spoiled");
+	});
+
     const createClipboardHTML = (codeContent, additionalClasses = '') => `
         <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
         <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">

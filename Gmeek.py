@@ -183,8 +183,13 @@ class GMEEK():
         if '<code class="notranslate">Gmeek-html' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 
+        # 图片
         if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+
+        # 剧透
+        if '<code class="notranslate">Gmeek-spoliertxt' in post_body: 
+            post_body = re.sub(r'<code class="notranslate">Gmeek-spoliertxt="([^"]+)"</code>', lambda match: f'<span class="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
 
         postBase["postTitle"]=issue["postTitle"]
         postBase["postUrl"]=self.blogBase["homeUrl"]+"/"+issue["postUrl"]

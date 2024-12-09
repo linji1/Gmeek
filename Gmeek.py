@@ -188,7 +188,7 @@ class GMEEK():
             post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<img data-fancybox="gallery" class="ImgLazyLoad" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
 
         # 剧透
-        if '<code class="notranslate">Gmeek-spoliertxt' in post_body: 
+        if '<code class="notranslate">Gmeek-spoilertxt' in post_body: 
             post_body = re.sub(r'<code class="notranslate">Gmeek-spoilertxt="([^"]+)"</code>', lambda match: f'<span id="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
 
         postBase["postTitle"]=issue["postTitle"]

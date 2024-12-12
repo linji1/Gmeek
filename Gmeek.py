@@ -186,7 +186,7 @@ class GMEEK():
 
         # 图片
         if '<code class="notranslate">Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<div class="ImgLazyLoad"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
 
         # 剧透
         if '<code class="notranslate">Gmeek-spoilertxt' in post_body: 

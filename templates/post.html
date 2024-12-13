@@ -17,7 +17,7 @@
 :root{--postTitle-textshadowColor:#ffffff80;}
 [data-color-mode=light][data-light-theme=dark],[data-color-mode=light][data-light-theme=dark]::selection,[data-color-mode=dark][data-dark-theme=dark],[data-color-mode=dark][data-dark-theme=dark]::selection{--postTitle-textshadowColor:#00000080;}
 .postTitle{margin:auto 0;font-size:40px;font-weight:bold;text-shadow:0 3px 2px var(--postTitle-textshadowColor);transition:all 0.3s ease-in-out;}
-.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;vertical-align: text-top;}
+.postTitle::after{content:'|';animation:blink 1s infinite;font-family:fantasy;font-weight:normal;vertical-align:text-top;}
 .no-blink::after{animation:none;}
 .spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
 .spoilerText.clear{filter:none;}

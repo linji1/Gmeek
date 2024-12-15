@@ -10,6 +10,8 @@
 .title-right{display:flex;align-items:center;flex-direction:column;}
 .title-right .circle{padding:14px 16px;}
 
+#header{display: flex;flex-direction: column;align-items: center;gap: 25px;}
+
 .subnav-search-input{width:200px;}
 .subnav-search button{padding:5px 8px;}
 
@@ -30,6 +32,8 @@
 }
 </style>
 {% endblock %}
+
+{% block body_class %}tag{% endblock %}
 
 {% block header %}
 <span class="tagTitle"><span>Loading</span><span class="AnimatedEllipsis"></span></span>
@@ -56,8 +60,6 @@
 	</svg>
 </a>
 {% endblock %}
-
-{% block header_class %}article-content{% endblock %}
 
 {% block content %}
 <div id="taglabel" style="margin-bottom:8px;"></div>

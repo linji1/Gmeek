@@ -7,10 +7,9 @@
 {% block style %}
 <style>
 .tagTitle{margin:auto 0;font-size:40px;font-weight:bold;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.title-right{display:flex;align-items:center;flex-direction:column;margin-bottom: 24px;}
+.title-right{display:flex;align-items:center;flex-direction:column;}
 .title-right .circle{padding:14px 16px;}
 
-.subnav-search{width:222px;margin-top:8px;margin-right:8px;}
 .subnav-search-input{width:160px;border-top-right-radius:0px;border-bottom-right-radius:0px;}
 .subnav-search button{padding:5px 8px;border-top-left-radius:0px;border-bottom-left-radius:0px;}
 
@@ -42,19 +41,20 @@
             <path id="searchSVG" fill-rule="evenodd"></path>
         </svg>
     </div>
-	<div id="functionBtn">
-		<a href="{{ blogBase['homeUrl'] }}" id="buttonHome" class="btn btn-invisible circle" title="{{ i18n['home'] }}">
-			<svg class="octicon" width="16" height="16">
-				<path id="pathHome" fill-rule="evenodd"></path>
-			</svg>
-		</a>
-		<a class="btn btn-invisible circle" onclick="modeSwitch()" title="{{ i18n['switchTheme'] }}" {%- if blogBase['themeMode']=='fix' -%}style="display:none;"{%- endif -%}>
-			<svg class="octicon" width="16" height="16" >
-				<path id="themeSwitch" fill-rule="evenodd"></path>
-			</svg>
-		</a>
-	</div>
 </div>
+{% endblock %}
+
+{% block functionBtn %}
+<a href="{{ blogBase['homeUrl'] }}" id="buttonHome" class="btn btn-invisible circle" title="{{ i18n['home'] }}">
+	<svg class="octicon" width="16" height="16">
+		<path id="pathHome" fill-rule="evenodd"></path>
+	</svg>
+</a>
+<a class="btn btn-invisible circle" onclick="modeSwitch()" title="{{ i18n['switchTheme'] }}" {%- if blogBase['themeMode']=='fix' -%}style="display:none;"{%- endif -%}>
+	<svg class="octicon" width="16" height="16" >
+		<path id="themeSwitch" fill-rule="evenodd"></path>
+	</svg>
+</a>
 {% endblock %}
 
 {% block header_class %}article-content{% endblock %}

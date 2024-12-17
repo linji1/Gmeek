@@ -212,7 +212,7 @@ class GMEEK():
             postBase["bottomText"]=''
 
         if '<pre class="notranslate">' in post_body:
-            keys=['sun','moon','sync','home','github','copy','check']
+            keys=['sun','moon','sync','home','github','copy','check','ThreeBars']
             if '<div class="highlight' in post_body:
                 postBase["highlight"]=1
             else:

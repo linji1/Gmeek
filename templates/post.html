@@ -68,7 +68,7 @@
 </a>
 
 <a class="ArticleTOC btn btn-invisible circle" onclick="toggleTOC();" title="文章目录">
-	<svg class="octicon" width="16" height="16" fill-rule="evenodd"><path ></path></svg>
+	<svg class="octicon" width="16" height="16" fill-rule="evenodd"><path id="ArticleTOCSVG"></path></svg>
 </a>
 
 <!-- <a class="ArticleTOC btn btn-invisible circle" onclick="toggleTOC();" title="文章目录">
@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	spoilers.length && spoilers.forEach(el => el.onclick = () => el.classList.toggle("clear"));
 });
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("ArticleTOCSVG").setAttribute("d",IconList["ThreeBars"]);
 {% if blogBase['showPostSource']==1 %}document.getElementById("pathIssue").setAttribute("d",IconList["github"]);{% endif %}
 {% if blogBase['commentNum']>0 -%}
     cmButton=document.getElementById("cmButton");

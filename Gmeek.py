@@ -212,13 +212,13 @@ class GMEEK():
             postBase["bottomText"]=''
 
         if '<pre class="notranslate">' in post_body:
-            keys=['sun','moon','sync','home','github','copy','check','ThreeBars']
+            keys=['sun','moon','sync','home','github','copy','check']
             if '<div class="highlight' in post_body:
                 postBase["highlight"]=1
             else:
                 postBase["highlight"]=2
         else:
-            keys=['sun','moon','sync','home','github','ThreeBars']
+            keys=['sun','moon','sync','home','github']
             postBase["highlight"]=0
 
         postIcon=dict(zip(keys, map(IconBase.get, keys)))

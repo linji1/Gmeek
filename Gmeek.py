@@ -150,12 +150,6 @@ class GMEEK():
         f.close()
 
     def createPostHtml(self,issue):
-        #keys = list(OrderedDict.fromkeys(['sun', 'moon', 'sync', 'search', 'github', 'threebars', 'copy', 'home', 'movetop', 'movebottom']     
-        keys=list(OrderedDict.fromkeys(['sun', 'moon', 'sync', 'search', 'github', 'threebars', 'copy', 'home', 'movetop', 'movebottom'] + self.blogBase["singlePage"]))
-        plistIcon={**dict(zip(keys, map(IconBase.get, keys))),**self.blogBase["iconList"]}
-        keys=['sun','moon','sync','home','search','post']
-        tagIcon=dict(zip(keys, map(IconBase.get, keys)))
-
         mdFileName=re.sub(r'[<>:/\\|?*\"]|[\0-\31]', '-', issue["postTitle"])
         f = open(self.backup_dir+mdFileName+".md", 'r', encoding='UTF-8')
         post_body=self.markdown2html(f.read())

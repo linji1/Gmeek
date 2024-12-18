@@ -150,6 +150,16 @@ class GMEEK():
         f.close()
 
     def createPostHtml(self,issue):
+        # 构建 keys 列表：基础图标 + 单页图标，去重
+        keys = list(OrderedDict.fromkeys(['sun', 'moon', 'sync', 'search', 'github', 'threebars', 'copy', 'home', 'movetop', 'movebottom'] + self.blogBase["singlePage"]))
+        # 合并基础图标路径和额外的自定义图标
+        postIcon = {
+            **dict(zip(keys, map(IconBase.get, keys))),
+            **self.blogBase["iconList"]
+        }
+        # 将 postIcon 传递给模板或保存到 self.blogBase 中
+        self.blogBase["postIcon"] = plistIcon
+
         mdFileName=re.sub(r'[<>:/\\|?*\"]|[\0-\31]', '-', issue["postTitle"])
         f = open(self.backup_dir+mdFileName+".md", 'r', encoding='UTF-8')
         post_body=self.markdown2html(f.read())

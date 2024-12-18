@@ -150,18 +150,11 @@ class GMEEK():
         f.close()
 
     def createPostHtml(self,issue):
-        # 构建图标数据
-        keys = list(OrderedDict.fromkeys(['sun', 'moon', 'sync', 'search', 'github', 'threebars', 'copy', 'home', 'movetop', 'movebottom'] + self.blogBase["singlePage"]))
-        postIcon = {
-            **dict(zip(keys, map(IconBase.get, keys))),  # 从 IconBase 动态获取图标路径
-            **self.blogBase["iconList"]  # 合并自定义图标
-        }
-
-        # 将 plistIcon 加入到 postData 中（或其他合适的地方）
-        postData["IconList"] = postIcon
-
-        # 返回更新后的数据
-        return postData
+        #keys = list(OrderedDict.fromkeys(['sun', 'moon', 'sync', 'search', 'github', 'threebars', 'copy', 'home', 'movetop', 'movebottom']     
+        keys=list(OrderedDict.fromkeys(['sun', 'moon', 'sync', 'search', 'github', 'threebars', 'copy', 'home', 'movetop', 'movebottom'] + self.blogBase["singlePage"]))
+        plistIcon={**dict(zip(keys, map(IconBase.get, keys))),**self.blogBase["iconList"]}
+        keys=['sun','moon','sync','home','search','post']
+        tagIcon=dict(zip(keys, map(IconBase.get, keys)))
 
         mdFileName=re.sub(r'[<>:/\\|?*\"]|[\0-\31]', '-', issue["postTitle"])
         f = open(self.backup_dir+mdFileName+".md", 'r', encoding='UTF-8')

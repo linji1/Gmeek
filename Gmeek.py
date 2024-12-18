@@ -158,7 +158,7 @@ class GMEEK():
             **self.blogBase["iconList"]
         }
         # 将 postIcon 传递给模板或保存到 self.blogBase 中
-        self.blogBase["postIcon"] = plistIcon
+        self.blogBase["postIcon"] = postIcon
 
         mdFileName=re.sub(r'[<>:/\\|?*\"]|[\0-\31]', '-', issue["postTitle"])
         f = open(self.backup_dir+mdFileName+".md", 'r', encoding='UTF-8')

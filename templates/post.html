@@ -52,7 +52,7 @@
 {% block header %}
 <h1 class="postTitle">{{ blogBase['postTitle'] }}</h1>
 {% endblock %}
-
+<script>const writeSpeed=80,textContent=document.querySelector(".postTitle").textContent,textContentLen=textContent.length,postTitle=document.querySelector(".postTitle");postTitle.textContent="";let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++),idx>textContentLen&&(clearInterval(writeTimer),postTitle.classList.remove("no-blink"))},writeTimer=setInterval(writing,80);postTitle.classList.add("no-blink");</script>
 {% block functionBtn %}
 <a href="{{ blogBase['homeUrl'] }}" id="buttonHome" class="btn btn-invisible circle" title="{{ i18n['home'] }}">
 	<svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd"></path></svg>
@@ -84,7 +84,18 @@
 {% block script %}
 <script>
 document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("header").offsetHeight;header.style.height=e+"px";const t=document.createElement("div");t.id="checkBtn";const n=document.getElementById("functionBtn");n.insertAdjacentElement("afterend",t),new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting?n.classList.remove("Btn-flex"):n.classList.add("Btn-flex")})},{threshold:0}).observe(t);const c=document.querySelectorAll(".spoilerText");c.length&&c.forEach(e=>e.onclick=(()=>e.classList.toggle("clear")))});
-const writeSpeed=80,textContent=document.querySelector(".postTitle").textContent,textContentLen=textContent.length,postTitle=document.querySelector(".postTitle");postTitle.textContent="";let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++),idx>textContentLen&&(clearInterval(writeTimer),postTitle.classList.remove("no-blink"))},writeTimer=setInterval(writing,80);postTitle.classList.add("no-blink");
+// const writeSpeed=80,textContent=document.querySelector(".postTitle").textContent,textContentLen=textContent.length,postTitle=document.querySelector(".postTitle");postTitle.textContent="";let idx=0;const writing=()=>{postTitle.textContent=textContent.slice(0,idx++),idx>textContentLen&&(clearInterval(writeTimer),postTitle.classList.remove("no-blink"))},writeTimer=setInterval(writing,80);postTitle.classList.add("no-blink");
+// const writeSpeed = 80,
+//     textContent = document.querySelector(".postTitle").textContent,
+//     textContentLen = textContent.length,
+//     postTitle = document.querySelector(".postTitle");
+// postTitle.textContent = "";
+// let idx = 0;
+// const writing = () => {
+//         postTitle.textContent = textContent.slice(0, idx++), idx > textContentLen && (clearInterval(writeTimer), postTitle.classList.remove("no-blink"))
+//     },
+//     writeTimer = setInterval(writing, 80);
+// postTitle.classList.add("no-blink");
 document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 {% if blogBase['showPostSource']==1 %}document.getElementById("pathIssue").setAttribute("d",IconList["github"]);{% endif %}
 {% if blogBase['commentNum']>0 -%}

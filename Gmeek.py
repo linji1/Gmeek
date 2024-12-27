@@ -182,6 +182,9 @@ class GMEEK():
                         f'color: var(--fgColor-{style},var(--color-{style}-fg));}}</style>'
                     )
         
+        if '<ul class="contains-task-list">' in post_body:
+            issue["style"]=issue["style"]+'<style>.contains-task-list{padding-left: 0.9em;list-style: none}</style>'
+        
         # 给原本的特殊标签增加小括号判断:<>, 缩小匹配范围
         if '<code class="notranslate">Gmeek-html' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)

@@ -181,7 +181,7 @@ class GMEEK():
                         f'.markdown-alert.markdown-alert-{alert} .markdown-alert-title {{'
                         f'color: var(--fgColor-{style},var(--color-{style}-fg));}}</style>'
                     )
-        
+
         # 优化任务列表样式
         if '<ul class="contains-task-list">' in post_body:
             issue["style"]=issue["style"]+'<style>.contains-task-list{padding-left:0.9em !important;list-style:none}</style>'

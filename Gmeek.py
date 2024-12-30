@@ -195,14 +195,14 @@ class GMEEK():
             post_body = re.sub(r'<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>\s*</p>', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 默认情况插入图片情况下的匹配规则<p> -> <a> -><img>
-        if '<p><a target="_blank" rel="noopener noreferrer" href="' in post_body:
+        if '<p><a target="_blank" rel=' in post_body:
             post_body = re.sub(r'<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>\s*</p>', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 通用插入图片情况下的匹配规则<a> -><img>
         #if '<a' in post_body:
             #post_body = re.sub(r'\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>\s*', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
-        if '<a target="_blank" rel="noopener noreferrer" href="' in post_body:
+        if '<a target="_blank" rel=' in post_body:
             post_body = re.sub(r'<a target="_blank" rel="noopener noreferrer" href=""><img src="([^"]+)" alt="([^"]+)"></a>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 剧透

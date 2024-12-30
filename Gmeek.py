@@ -191,12 +191,14 @@ class GMEEK():
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 
         # 手动插入外链图片
-        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
-            post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+        #if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+            #post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
+        if '<code class="notranslate">Gmeek-imgbox' in post_body:
+            post_body = re.sub(r'<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>\s*</p>', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 默认图片
         if '<a' in post_body:
-            post_body = re.sub(r'<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body,flags=re.DOTALL)
+            post_body = re.sub(r'<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>\s*</p>', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 剧透
         if '<code class="notranslate">Gmeek-spoilertxt' in post_body: 

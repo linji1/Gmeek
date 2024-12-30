@@ -191,10 +191,8 @@ class GMEEK():
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 
         # 手动插入外链图片
-        #if '<code class="notranslate">Gmeek-imgbox' in post_body: 
+        if '<code class="notranslate">Gmeek-imgbox' in post_body: 
             #post_body = re.sub(r'<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">',post_body, flags=re.DOTALL)
-        if '<code class="notranslate">Gmeek-imgbox' in post_body:
-            post_body = re.sub(r'<p>\s*<code class="notranslate">Gmeek-imgbox="([^"]+)"</code>\s*</p>', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 默认情况插入图片情况下的匹配规则<p> -> <a> -><img>
         if '<a' in post_body:

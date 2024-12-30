@@ -108,7 +108,7 @@ class GMEEK():
 
         if "primerCSS" not in self.blogBase:
             #self.blogBase["primerCSS"]="<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />"
-            self.blogBase["primerCSS"]="<link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v2.1/static/primer.min.css' rel='stylesheet' />"
+            self.blogBase["primerCSS"]="<link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v2.2/static/primer.min.css' rel='stylesheet' />"
             #self.blogBase["primerCSS"]="<link href='https://gjkblog.us.kg/demo/primer.css' rel='stylesheet' />"
 
         if "homeUrl" not in self.blogBase:

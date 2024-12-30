@@ -203,7 +203,7 @@ class GMEEK():
             #post_body = re.sub(r'\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>\s*', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         if '<a target="_blank" rel=' in post_body:
-            post_body = re.sub(r'<a target="_blank" rel="noopener noreferrer" href=""><img src="([^"]+)" alt="([^"]+)"></a>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
+            post_body = re.sub(r'<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 剧透
         if '<code class="notranslate">Gmeek-spoilertxt' in post_body: 

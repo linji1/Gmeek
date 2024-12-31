@@ -108,7 +108,7 @@ class GMEEK():
 
         if "primerCSS" not in self.blogBase:
             #self.blogBase["primerCSS"]="<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />"
-            self.blogBase["primerCSS"]="<link href='https://cdn.jsdelivr.net/gh/gjken/gjken.github.io@v2.2/static/primer.min.css' rel='stylesheet' />"
+            self.blogBase["primerCSS"]="<link href='https://fastly.jsdelivr.net/gh/gjken/gjken.github.io@v2.2/static/primer.min.css' rel='stylesheet' />"
             #self.blogBase["primerCSS"]="<link href='https://gjkblog.us.kg/demo/primer.css' rel='stylesheet' />"
 
         if "homeUrl" not in self.blogBase:
@@ -185,8 +185,8 @@ class GMEEK():
         # 优化任务列表样式
         if '<ul class="contains-task-list">' in post_body:
             issue["style"]=issue["style"]+'<style>.contains-task-list{padding-left:0.9em !important;list-style:none}</style>'
-        
-        # 给原本的特殊标签增加小括号判断:<>, 缩小匹配范围
+
+        # 给原本的Gmeek-html增加小括号判断:<>, 缩小匹配范围
         if '<code class="notranslate">Gmeek-html' in post_body:
             post_body = re.sub(r'<code class="notranslate">Gmeek-html(&lt;.*?&gt;)</code>', lambda match: html.unescape(match.group(1)), post_body, flags=re.DOTALL)
 
@@ -199,9 +199,6 @@ class GMEEK():
             post_body = re.sub(r'<p>\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>\s*</p>', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 
         # 通用插入图片情况下的匹配规则<a> -><img>
-        #if '<a' in post_body:
-            #post_body = re.sub(r'\s*<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>\s*', lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
-
         if '<a target="_blank" rel=' in post_body:
             post_body = re.sub(r'<a[^>]*?href="([^"]+)"[^>]*?><img[^>]*?src="\1"[^>]*?></a>',lambda match: f'<div class="ImgLazyLoad-circle"></div>\n<img data-fancybox="gallery" img-src="{match.group(1)}">', post_body, flags=re.DOTALL)
 

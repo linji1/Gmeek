@@ -1,0 +1,40 @@
+name: Restore Issues from Markdown Files
+
+on:
+  push:
+    paths:
+      - '**/*.md'
+
+jobs:
+  restore-issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Git for committing changes
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      # Loop through all Markdown files and restore issues
+      - name: Restore Issues
+        run: |
+          # Iterate over all Markdown files in the repository
+          for file in $(find . -name "*.md"); do
+            # Extract issue number from file name (assuming format: 1_查询.md)
+            issue_number=$(basename "$file" | cut -d'_' -f1)
+            
+            # Extract the issue content from the file
+            issue_content=$(cat "$file")
+            
+            # Use GitHub CLI to reopen the issue (you could also use API directly)
+            gh issue comment "$issue_number" --body "$issue_content"
+            gh issue reopen "$issue_number"
+            echo "Restored issue #$issue_number from $file"
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

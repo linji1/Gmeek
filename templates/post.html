@@ -80,11 +80,11 @@
 	</a>
 </div>
 {% endblock %}
-<div>
-	<a class="btn btn-invisible circle" id="toogleBtn">
-		<svg class="octicon" width="16" height="16"><path id="ArticleTOC" d="M3.22 10.53a.749.749 0 0 1 0-1.06l4.25-4.25a.749.749 0 0 1 1.06 0l4.25 4.25a.749.749 0 1 1-1.06 1.06L8 6.811 4.28 10.53a.749.749 0 0 1-1.06 0Z"></path></svg>
-	</a>
-</div>
+{% block toogleBtn %}
+<a class="btn btn-invisible circle" id="toogleBtn">
+	<svg class="octicon" width="16" height="16"><path id="ArticleTOC" d="M3.22 10.53a.749.749 0 0 1 0-1.06l4.25-4.25a.749.749 0 0 1 1.06 0l4.25 4.25a.749.749 0 1 1-1.06 1.06L8 6.811 4.28 10.53a.749.749 0 0 1-1.06 0Z"></path></svg>
+</a>
+{% endblock %}
 {% block content %}
 <div class="markdown-body" id="postBody">{{ blogBase['postBody'] }}</div>
 <div style="font-size:small;margin-top:8px;float:right;">{{ blogBase['bottomText'] }}</div>

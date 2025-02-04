@@ -1,9 +1,9 @@
 @echo off
-echo ¸üÐÂGJKen.github.io´úÂë
-set /p info="ÊäÈë¸üÐÂµÄÐÅÏ¢(ÀýÈç:update %date:~0,10% %time:~0,5%):"
+echo ï¿½ï¿½linji1.github.ioï¿½ï¿½ï¿½ï¿½
+set /p info="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Ï¢(ï¿½ï¿½ï¿½ï¿½:update %date:~0,10% %time:~0,5%):"
 git init
 git add .
 git commit -m "%info%"
 git push
-set /p qr=ÊÇ·ñ´ò¿ªgitÖ÷Ò³¼ì²é?(Y or N):
-if /I %qr%==Y start https://github.com/GJKen/GJKen.github.io
+set /p qr=ï¿½Ç·ï¿½ï¿½gitï¿½ï¿½Ò³ï¿½ï¿½ï¿½?(Y or N):
+if /I %qr%==Y start https://github.com/linji1/linji1.github.io

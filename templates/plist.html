@@ -47,26 +47,29 @@
 {% endblock %}
 
 {% block functionBtn %}
-<a href="{{ blogBase['homeUrl'] }}/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="{{ i18n['Search'] }}">
+<a href="/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="{{ i18n['Search'] }}">
 	<svg class="octicon" width="16" height="16" >
 		<path id="pathSearch" fill-rule="evenodd"></path>
 	</svg>
 </a>
 {% for key, value in blogBase['exlink'].items() -%}
-<a href="{{ value }}" class="btn btn-invisible circle" title="{{ key }}" target="_blank">
+<a href="/{{ value }}" class="btn btn-invisible circle" title="{{ key }}" target="_blank">
 	<svg class="octicon" width="16" height="16" >
 		<path id="{{ key }}" fill-rule="evenodd"></path>
 	</svg>
 </a>
 {%- endfor %}
 {% for num in blogBase['singeListJson'] -%}
-<a href="{{ blogBase['homeUrl'] }}/{{ blogBase['singeListJson'][num]['labels'][0] }}.html" class="btn btn-invisible circle" title="{{ blogBase['singeListJson'][num]['postTitle'] }}">
+<a href="/{{ blogBase['singeListJson'][num]['labels'][0] }}.html" class="btn btn-invisible circle" title="{{ blogBase['singeListJson'][num]['postTitle'] }}">
 	<svg class="octicon" width="16" height="16" >
 		<path id="{{ blogBase['singeListJson'][num]['postTitle'] }}" fill-rule="evenodd"></path>
 	</svg>
 </a>
 {%- endfor %}
-<a href="{{ blogBase['homeUrl'] }}/rss.xml" target="_blank" id="buttonRSS" class="btn btn-invisible circle" title="RSS">
+<a href="https://github.com/linji1/linji1.github.io/issues" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <svg class="octicon" width="16" height="16"><path id="pathIssue" fill-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>
+</a>
+<a href="/rss.xml" target="_blank" id="buttonRSS" class="btn btn-invisible circle" title="RSS">
 	<svg class="octicon" width="16" height="16" >
 		<path id="pathRSS" fill-rule="evenodd"></path>
 	</svg>
@@ -82,7 +85,7 @@
 <div style="margin-bottom:16px;">{{ blogBase['subTitle'] }}</div>
 <nav class="SideNav border">
 {% for num in postListJson -%}
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="{{ postListJson[num]['postUrl']|e }}">
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="/{{ postListJson[num]['postUrl']|e }}">
     <div class="d-flex flex-items-center">
         <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop{{ postListJson[num]['top'] }}" d=""></path>
         </svg>
@@ -91,7 +94,7 @@
     <div class="listLabels">
         {% if postListJson[num]['commentNum']>0 %}<span class="Label" style="background-color:{{ blogBase['commentLabelColor'] }}">{{ postListJson[num]['commentNum'] }}</span>{% endif %}
         {% for label in postListJson[num]['labels'] -%}
-        <span class="Label LabelName" style="background-color:{{ blogBase['labelColorDict'][label] }}"><object><a style="color:#fff" href="tag.html#{{ label }}">{{ label }}</a></object></span>
+        <span class="Label LabelName" style="background-color:{{ blogBase['labelColorDict'][label] }}"><object><a style="color:#fff" href="/tag.html#{{ label }}">{{ label }}</a></object></span>
         {%- endfor %}
         <span class="Label LabelTime" style="background-color:{{ postListJson[num]['dateLabelColor'] }}">{{ postListJson[num]['createdDate'] }}</span>
     </div>
@@ -104,13 +107,13 @@
         {%- if blogBase['prevUrl']=='disabled' -%}
         <span class="previous_page" aria-disabled="true">{{ i18n['Previous'] }}</span>
         {% else -%}
-        <a class="previous_page" rel="previous" href="{{ blogBase['homeUrl'] }}{{ blogBase['prevUrl'] }}" aria-label="Previous Page">{{ i18n['Previous'] }}</a>
+        <a class="previous_page" rel="previous" href="{{ blogBase['prevUrl'] }}" aria-label="Previous Page">{{ i18n['Previous'] }}</a>
         {%- endif -%}
 
         {%- if blogBase['nextUrl']=='disabled' -%}
         <span class="next_page" aria-disabled="true">{{ i18n['Next'] }}</span>
         {% else -%}
-        <a class="next_page" rel="next" href="{{ blogBase['homeUrl'] }}{{ blogBase['nextUrl'] }}" aria-label="Next Page">{{ i18n['Next'] }}</a>
+        <a class="next_page" rel="next" href="{{ blogBase['nextUrl'] }}" aria-label="Next Page">{{ i18n['Next'] }}</a>
         {%- endif -%}
 
     </div>

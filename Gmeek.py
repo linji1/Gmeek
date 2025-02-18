@@ -108,7 +108,7 @@ class GMEEK():
 
         if "primerCSS" not in self.blogBase:
             #self.blogBase["primerCSS"]="<link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />"
-            self.blogBase["primerCSS"]="<link href='https://gcore.jsdelivr.net/gh/linji1/linji1.github.io@main/static/pluging/primer.min.css' rel='stylesheet' />"
+            self.blogBase["primerCSS"]="<link href='/pluging/primer.min.css' rel='stylesheet' />"
             #self.blogBase["primerCSS"]="<link href='https://gjkblog.us.kg/demo/primer.css' rel='stylesheet' />"
 
         if "homeUrl" not in self.blogBase:
@@ -539,8 +539,8 @@ docListFile.close()
 if os.environ.get('GITHUB_EVENT_NAME')!='schedule':
     print("====== update readme file ======")
     workspace_path = os.environ.get('GITHUB_WORKSPACE')
-    readme="# %s :link: %s \r\n" % (blog.blogBase["title"],"https://linji1.github.io")
-    readme=readme+"### :page_facing_up: [%d](https://linji1.github.io/tag.html) \r\n" % (len(blog.blogBase["postListJson"])-1,"https://linji1.github.io")
+    readme="# %s :link: %s \r\n" % (blog.blogBase["title"],blog.blogBase["homeUrl"])
+    readme=readme+"### :page_facing_up: [%d](%s/tag.html) \r\n" % (len(blog.blogBase["postListJson"])-1,blog.blogBase["homeUrl"])
     readme=readme+"### :speech_balloon: %d \r\n" % commentNumSum
     readme=readme+"### :hibiscus: %d \r\n" % wordCount
     readme=readme+"### :alarm_clock: %s \r\n" % datetime.datetime.now(blog.TZ).strftime('%Y-%m-%d %H:%M:%S')

@@ -544,7 +544,7 @@ if os.environ.get('GITHUB_EVENT_NAME')!='schedule':
     readme=readme+"### :speech_balloon: %d \r\n" % commentNumSum
     readme=readme+"### :hibiscus: %d \r\n" % wordCount
     readme=readme+"### :alarm_clock: %s \r\n" % datetime.datetime.now(blog.TZ).strftime('%Y-%m-%d %H:%M:%S')
-    readme=readme+"### 曾经的域名 \r\n [1.https://linji.org/](https://linji.org/)\r\n [2.https://linji.cn/](https://linji.cn/)\r\n [3.https://p.linji.cn/](https://p.linji.cn/)\r\n [4.https://m.linji.cn/](https://m.linji.cn/)\r\n [5.https://wdlu.cn/](https://wdlu.cn/)\r\n [6.https://linji.vercel.app/](https://linji.vercel.app/)\r\n当我离开这个世界后，希望这个网站还能存在100年。\r\n ### Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)\r\n"
+    readme=readme+"### Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)\r\n"
     readmeFile=open(workspace_path+"/README.md","w")
     readmeFile.write(readme)
     readmeFile.close()

@@ -41,7 +41,7 @@
     {%- if blogBase['displayTitle']=='Meekdai' -%}
     <a class="blogTitle" href="https://meekdai.com"><span style="font-size:0;">M</span>eekdai</a>
     {% else -%}
-    <a class="blogTitle">{{ blogBase['displayTitle'] }}</a>
+    <a href="/" class="blogTitle">{{ blogBase['displayTitle'] }}</a>
     {%- endif -%}
 </div>
 {% endblock %}
@@ -82,7 +82,7 @@
 {% endblock %}
 
 {% block content %}
-<div style="margin-bottom:16px;">{{ blogBase['subTitle'] }}</div>
+<div id="subTitle" style="margin-bottom:16px;">{{ blogBase['subTitle'] }}</div>
 <nav class="SideNav border">
 {% for num in postListJson -%}
 <a class="SideNav-item d-flex flex-items-center flex-justify-between" href="/{{ postListJson[num]['postUrl']|e }}">

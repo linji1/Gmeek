@@ -545,7 +545,7 @@ if os.environ.get('GITHUB_EVENT_NAME')!='schedule':
     readme=readme+"### :speech_balloon: %d \r\n" % commentNumSum
     readme=readme+"### :hibiscus: %d \r\n" % wordCount
     readme=readme+"### :alarm_clock: %s \r\n" % datetime.datetime.now(blog.TZ).strftime('%Y-%m-%d %H:%M:%S')
-    readme=readme+"### 曾经的网站 <br><br> [1.指向本站：https://linji.org](https://linji.org)<br><br> [2.指向本站：https://linji.vercel.app](https://linji.vercel.app)<br><br> [3.老林笔记：https://linji.cn](https://linji.cn)<br><br> [4.老林导航：https://p.linji.cn](https://p.linji.cn)<br><br>  [5.老林网盘：https://linji.cn/file](https://linji.cn/file)<br><br>[6.仿朋友圈：https://m.linji.cn](https://m.linji.cn)<br><br> [7.学生报名：https://wdlu.cn](https://wdlu.cn)<br><br>Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)\r\n"
+    readme=readme+"### 曾经的网站 <br><br>1.指向本站：[https://linji1.github.io](https://linji1.github.io)<br><br>2.指向本站：[https://linji.org](https://linji.org)<br><br>3.指向本站：[https://linji.vercel.app](https://linji.vercel.app)<br><br>4.老林笔记：[https://linji.cn](https://linji.cn)<br><br>5.老林导航：[https://p.linji.cn](https://p.linji.cn)<br><br>6.老林网盘：[https://linji.cn/file](https://linji.cn/file)<br><br>7.仿朋友圈：[https://m.linji.cn](https://m.linji.cn)<br><br>8.学生报名：[https://wdlu.cn](https://wdlu.cn)<br><br>Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)\r\n"
     readmeFile=open(workspace_path+"/README.md","w")
     readmeFile.write(readme)
     readmeFile.close()

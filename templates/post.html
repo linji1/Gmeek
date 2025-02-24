@@ -97,7 +97,7 @@
 {% endblock %}
 {% block content %}
 <div class="markdown-body" id="postBody">{{ blogBase['postBody'] }}</div>
-<div style="font-size:small;margin-top:8px;float:right;">{{ blogBase['bottomText'] }}</div>
+<div style="font-size:small;margin-top:8px;float:right;" id="article-links">{{ blogBase['bottomText'] }}</div>
 {% if blogBase['needComment']==1 %}
 <button class="btn btn-block" type="button" id="cmButton">{{ i18n['comments'] }}</button>
 <div class="comments" id="comments"></div>

@@ -539,7 +539,7 @@ docListFile.close()
 if os.environ.get('GITHUB_EVENT_NAME')!='schedule':
     print("====== update readme file ======")
     workspace_path = os.environ.get('GITHUB_WORKSPACE')
-    readme="## 当我离开这个世界后，希望这个网站还能存在100年。2025.02.19\r\n"
+    readme="# 当我离开这个世界后，希望这个网站还能存在100年。2025.02.19\r\n"
     readme=readme+"## %s :link: %s \r\n" % (blog.blogBase["title"],blog.blogBase["homeUrl"])
     readme=readme+"### :page_facing_up: [%d](%s/tag.html) \r\n" % (len(blog.blogBase["postListJson"])-1,blog.blogBase["homeUrl"])
     readme=readme+"### :speech_balloon: %d \r\n" % commentNumSum

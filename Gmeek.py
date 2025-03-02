@@ -207,7 +207,7 @@ class GMEEK():
             post_body = re.sub(r'<code class="notranslate">Gmeek-spoilertxt="([^"]+)"</code>', lambda match: f'<span class="spoilerText">{match.group(1)}</span>', post_body, flags=re.DOTALL)
 
         postBase["postTitle"]=issue["postTitle"]
-        postBase["postUrl"]=""+issue["postUrl"]
+        postBase["postUrl"]=self.blogBase["homeUrl"]+"/"+issue["postUrl"]
         postBase["description"]=issue["description"]
         postBase["ogImage"]=issue["ogImage"]
         postBase["postBody"]=post_body
@@ -258,9 +258,9 @@ class GMEEK():
                     onePageList=dict(list(self.blogBase["postListJson"].items())[topNum:topNum+postNum])
                     htmlDir=self.root_dir+("page%d.html" % (pageFlag+1))
                     if pageFlag==1:
-                        self.blogBase["prevUrl"]="index.html"
+                        self.blogBase["prevUrl"]="/index.html"
                     else:
-                        self.blogBase["prevUrl"]="page%d.html" % pageFlag
+                        self.blogBase["prevUrl"]="/page%d.html" % pageFlag
                     self.blogBase["nextUrl"]="disabled"
 
                 self.renderHtml('plist.html',self.blogBase,onePageList,htmlDir,plistIcon)
@@ -272,14 +272,14 @@ class GMEEK():
                 if pageFlag==0:
                     htmlDir=self.root_dir+"index.html"
                     self.blogBase["prevUrl"]="disabled"
-                    self.blogBase["nextUrl"]="page2.html"
+                    self.blogBase["nextUrl"]="/page2.html"
                 else:
                     htmlDir=self.root_dir+("page%d.html" % (pageFlag+1))
                     if pageFlag==1:
-                        self.blogBase["prevUrl"]="index.html"
+                        self.blogBase["prevUrl"]="/index.html"
                     else:
-                        self.blogBase["prevUrl"]="page%d.html" % pageFlag
-                    self.blogBase["nextUrl"]="page%d.html" % (pageFlag+2)
+                        self.blogBase["prevUrl"]="/page%d.html" % pageFlag
+                    self.blogBase["nextUrl"]="/page%d.html" % (pageFlag+2)
 
                 self.renderHtml('plist.html',self.blogBase,onePageList,htmlDir,plistIcon)
                 print("create "+htmlDir)
@@ -303,18 +303,18 @@ class GMEEK():
 
         for num in self.blogBase["singeListJson"]:
             item=feed.add_item()
-            item.guid(""+self.blogBase["singeListJson"][num]["postUrl"],permalink=True)
+            item.guid(self.blogBase["homeUrl"]+"/"+self.blogBase["singeListJson"][num]["postUrl"],permalink=True)
             item.title(self.blogBase["singeListJson"][num]["postTitle"])
             item.description(self.blogBase["singeListJson"][num]["description"])
-            item.link(href=""+self.blogBase["singeListJson"][num]["postUrl"])
+            item.link(href=self.blogBase["homeUrl"]+"/"+self.blogBase["singeListJson"][num]["postUrl"])
             item.pubDate(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime(self.blogBase["singeListJson"][num]["createdAt"])))
 
         for num in self.blogBase["postListJson"]:
             item=feed.add_item()
-            item.guid(""+self.blogBase["postListJson"][num]["postUrl"],permalink=True)
+            item.guid(self.blogBase["homeUrl"]+"/"+self.blogBase["postListJson"][num]["postUrl"],permalink=True)
             item.title(self.blogBase["postListJson"][num]["postTitle"])
             item.description(self.blogBase["postListJson"][num]["description"])
-            item.link(href=""+self.blogBase["postListJson"][num]["postUrl"])
+            item.link(href=self.blogBase["homeUrl"]+"/"+self.blogBase["postListJson"][num]["postUrl"])
             item.pubDate(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime(self.blogBase["postListJson"][num]["createdAt"])))
 
         if self.oldFeedString!='':
@@ -545,7 +545,7 @@ if os.environ.get('GITHUB_EVENT_NAME')!='schedule':
     readme=readme+"### :speech_balloon: %d \r\n" % commentNumSum
     readme=readme+"### :hibiscus: %d \r\n" % wordCount
     readme=readme+"### :alarm_clock: %s \r\n" % datetime.datetime.now(blog.TZ).strftime('%Y-%m-%d %H:%M:%S')
-    readme=readme+"<h3>曾经的网站</h3>1.指向本站：https://linji.org<br>2.指向本站：https://linji.vercel.app<br>3.老林笔记：https://linji.cn<br>4.老林导航：https://p.linji.cn<br>5.老林导航：https://t.linji.cn<br>6.老林记帐：https://jz.linji.cn<br>7.老林网盘：https://linji.cn/file<br>8.仿朋友圈：https://m.linji.cn<br>9.学生报名：https://wdlu.cn<br><br>Powered by ❤️ <a href='https://github.com/Meekdai/Gmeek'>Gmeek</a>\r\n"
+    readme=readme+"<h3>历史网站</h3>1.指向本站：https://linji.org<br>2.指向本站：https://linji.vercel.app<br>3.老林笔记：https://linji.cn<br>4.老林导航：https://p.linji.cn<br>5.老林导航：https://t.linji.cn<br>6.老林记帐：https://jz.linji.cn<br>7.老林网盘：https://linji.cn/file<br>8.仿朋友圈：https://m.linji.cn<br>9.学生报名：https://wdlu.cn<br><br>Powered by ❤️ <a href='https://github.com/Meekdai/Gmeek'>Gmeek</a>\r\n"
     readmeFile=open(workspace_path+"/README.md","w")
     readmeFile.write(readme)
     readmeFile.close()

@@ -31,11 +31,7 @@ body,#content,#functionBtn,.tagTitle,.title-left a,.subnav-search{-webkit-animat
 {% block style %}{% endblock %}
 
 <body>
-    <div id="header">
-		{% if blogBase['showPostSource']==1 %}
-	<a href="{{ blogBase['postSourceUrl'] }}" target="_blank">{% block header %}{% endblock %}</a>
-	{% endif %}
-	</div>
+    <div id="header">{% block header %}{% endblock %}</div>
     <div id="functionBtn">{% block functionBtn %}{% endblock %}</div>
     <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">{% include 'footer.html' %}</div>

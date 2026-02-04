@@ -52,7 +52,9 @@
 {% endblock %}
 
 {% block header %}
-<h1 class="postTitle">{{ blogBase['postTitle'] }}</h1>
+{% if blogBase['showPostSource']==1 %}
+<a href="{{ blogBase['postSourceUrl'] }}" target="_blank"><h1 class="postTitle">{{ blogBase['postTitle'] }}</h1></a>
+{% endif %}
 {% endblock %}
 
 {% block functionBtn %}

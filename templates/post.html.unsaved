@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta name="description" content="{{ blogBase['description'] }}">
+<meta property="og:title" content="{{ blogBase['postTitle'] }}">
+<meta property="og:description" content="{{ blogBase['description'] }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ blogBase['postUrl'] }}">
+<meta property="og:image" content="{{ blogBase['ogImage'] }}">
+<title>{{ blogBase['postTitle'] }}</title>
+{% if blogBase['highlight']==1 %}<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />{% endif %}
+{{ blogBase['head'] }}
+{% endblock %}
+
+{% block style %}
+<style>
+.postTitle{margin:0 auto;font-size:28px;font-weight:bold;}
+.no-blink::after{animation:none;}
+.spoilerText{filter:blur(5px);-webkit-filter:blur(5px);cursor:pointer;transition:filter .3s ease}
+.spoilerText.clear{filter:none;}
+#postBody{border-bottom:1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+
+#toogleBtn{position:fixed;top:51px;right:6%;display:none;}
+#toogleBtn.active,#toogleBtn path{display:flex;padding:6px 7px;fill:var(--title-right-svgColor);cursor:pointer;transition:transform 0.3s ease-in-out;background:var(--tooglebtn-bgColor)}
+#toogleBtn.active:hover svg path{fill:var(--title-right-svgHovercolor);}
+#toogleBtn.btn-fadeout{opacity:0;}
+#functionBtn div:first-of-type{display:flex;gap:10px}
+
+.g-emoji{font-size:24px;}
+@media (max-width:600px) {
+    body {padding:8px;}
+    .postTitle{font-size:24px;}
+}
+{% if blogBase['highlight']!=0 -%}
+.copy-feedback {
+    display:none;
+    position:absolute;
+    top:10px;
+    right:50px;
+    color:var(--color-fg-on-emphasis);
+    background-color:var(--color-fg-muted);
+    border-radius:3px;
+    padding:5px 8px;
+    font-size:12px;
+}{% endif %}
+</style>
+{{ blogBase['style'] }}
+
+{% endblock %}
+
+{% block header %}
+{% if blogBase['showPostSource']==1 %}
+<a href="{{ blogBase['postSourceUrl'] }}" target="_blank"><h1 class="postTitle" style="color: black;">{{ blogBase['postTitle'] }}</h1></a>
+{% endif %}
+{% endblock %}
+
+{% block functionBtn %}
+<div>
+	<a href="/blog/index.html" id="buttonHome" class="btn btn-invisible circle" title="{{ i18n['home'] }}">
+		<svg class="octicon" width="16" height="16"><path id="pathHome" fill-rule="evenodd" d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path></svg>
+	</a>
+	<a href="/blog/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="{{ i18n['Search'] }}">
+		<svg class="octicon" width="16" height="16">
+			<path id="pathSearch" fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path>
+		</svg>
+	</a>
+    <a href="/blog/post/2.html" class="btn btn-invisible circle" title="老林导航">
+        <svg class="octicon" width="16" height="16">
+            <path id="老林导航" fill-rule="evenodd" d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path>
+        </svg>
+    </a>
+    <a href="/blog/post/1.html" class="btn btn-invisible circle" title="关于本人">
+        <svg class="octicon" width="16" height="16">
+            <path id="关于本人" fill-rule="evenodd" d="M10.561 8.073a6.005 6.005 0 0 1 3.432 5.142.75.75 0 1 1-1.498.07 4.5 4.5 0 0 0-8.99 0 .75.75 0 0 1-1.498-.07 6.004 6.004 0 0 1 3.431-5.142 3.999 3.999 0 1 1 5.123 0ZM10.5 5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"></path>
+        </svg>
+    </a>
+
+<span class="btn btn-invisible circle" id="playBtn" onclick="handlePlayAction('play')" title="收听本文">
+		<svg id="playBtn" onclick="handlePlayAction('play')" title="收听本文" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="16" class="octicon" style="margin-top: 11px;">
+    <path d="M160 288h-16c-35.35 0-64 28.7-64 64.12v63.76c0 35.41 28.65 64.12 64 64.12h16c17.67 0 32-14.36 32-32.06V320.06c0-17.71-14.33-32.06-32-32.06zm208 0h-16c-17.67 0-32 14.35-32 32.06v127.88c0 17.7 14.33 32.06 32 32.06h16c35.35 0 64-28.71 64-64.12v-63.76c0-35.41-28.65-64.12-64-64.12zM256 32C112.91 32 4.57 151.13 0 288v112c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16V288c0-114.67 93.33-207.8 208-207.82 114.67.02 208 93.15 208 207.82v112c0 8.84 7.16 16 16 16h16c8.84 0 16-7.16 16-16V288C507.43 151.13 399.09 32 256 32z"></path>
+  </svg>
+	</span>
+	<a class="btn btn-invisible circle" onclick="modeSwitch();" title="{{ i18n['switchTheme'] }}" {%- if blogBase['themeMode']=='fix' -%}style="display:none;"{%- endif -%}>
+		<svg class="octicon" width="16" height="16" ><path id="themeSwitch" fill-rule="evenodd"></path></svg>
+	</a>   
+	
+	<a class="ArticleTOC btn btn-invisible circle" title="文章目录">
+		<svg class="octicon" width="16" height="16"><path id="ArticleTOC"></path></svg>
+	</a>
+</div>
+<a class="circle" id="toogleBtn">
+	<svg class="octicon" width="24" height="24"><path id="ArticleTOC" d="M5.22 8.22a.749.749 0 0 0 0 1.06l6.25 6.25a.749.749 0 0 0 1.06 0l6.25-6.25a.749.749 0 1 0-1.06-1.06L12 13.939 6.28 8.22a.749.749 0 0 0-1.06 0Z"></path></svg>
+</a>
+{% endblock %}
+{% block content %}
+<style>
+.sentence {
+  cursor: pointer;
+  /* 默认 inline，不破坏排版 */
+}
+.sentence:hover {
+  background-color: #f0f0f0;
+}
+.sentence.current {
+  background-color: #ffeb3b; /* 黄色高亮 */
+  border-radius: 2px;
+}
+</style>
+<!-- 听读控制面板（插入到printview容器前） -->
+
+<div class="markdown-body" id="postBody">{{ blogBase['postBody'] }}</div>
+<div style="font-size:small;margin-top:8px;float:right;" id="article-links">{{ blogBase['bottomText'] }}
+<script>
+    // 获取当前页面的URL
+    const currentUrl = window.location.href;
+    
+    // 提取URL中的数字部分
+    const urlParts = currentUrl.split('/');
+    const currentArticleNumber = parseInt(urlParts[urlParts.length - 1].split('.')[0], 10);
+    
+    // 计算上一篇和下一篇文章的数字
+    const prevArticleNumber = currentArticleNumber - 1;
+    const nextArticleNumber = currentArticleNumber + 1;
+    
+    // 检查文章是否存在
+    const checkArticleExists = (articleNumber) => {
+        // 这里可以使用AJAX请求或其他方法检查文件是否存在
+        // 示例：使用AJAX请求检查文件是否存在
+        return new Promise((resolve) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('HEAD', `/blog/post/${articleNumber}.html`, true);
+            xhr.onload = () => resolve(xhr.status === 200);
+            xhr.onerror = () => resolve(false);
+            xhr.send();
+        });
+    };
+
+    // 生成上一篇和下一篇文章的链接
+    const generateLink = (articleNumber, text) => {
+        if (articleNumber > 0) {
+            return `<a href="/blog/post/${articleNumber}.html" style="color: black;">${text}: ${articleNumber}</a>`;
+        }
+        return `${text}: 无`;
+    };
+
+    // 生成上一篇链接
+    const prevLink = generateLink(prevArticleNumber, '上一篇');
+
+    // 检查下一篇是否存在并生成链接
+    checkArticleExists(nextArticleNumber).then((exists) => {
+        const nextLink = exists ? generateLink(nextArticleNumber, '下一篇') : '下一篇: 无';
+        
+        // 输出结果到指定的div中
+        const linksDiv = document.getElementById('article-links');
+        if (linksDiv) {
+            linksDiv.innerHTML = `${prevLink} | ${nextLink}`;
+        } else {
+            console.log('没有找到ID为article-links的div元素');
+        }
+    });
+</script>
+</div>
+{% if blogBase['needComment']==1 %}
+<button class="btn btn-block" type="button" id="cmButton">{{ i18n['comments'] }}</button>
+<div class="comments" id="comments"></div>
+{% endif %}
+{% endblock %}
+
+{% block script %}
+<script>
+// const postTitle=document.querySelector(".postTitle"),textContent=postTitle.textContent;postTitle.textContent="";let idx=0;const writeTimer=setInterval(()=>{postTitle.textContent=textContent.slice(0,idx++),idx>textContent.length&&(clearInterval(writeTimer),postTitle.classList.remove("no-blink"))},80);postTitle.classList.add("no-blink");const spoilers=document.querySelectorAll(".spoilerText");spoilers.length&&spoilers.forEach(t=>t.onclick=(()=>t.classList.toggle("clear"))),document.addEventListener("DOMContentLoaded",()=>{const t=document.createElement("div");t.id="checkBtn";const e=document.getElementById("functionBtn");e.insertAdjacentElement("afterend",t),new IntersectionObserver(t=>{t.forEach(t=>{const n=t.isIntersecting;e.classList.toggle("Btn-flex",!n),e.style.top=n?"0":"-100px"})},{rootMargin:"300px 0px 0px 0px",threshold:0}).observe(t);let n=0;const o=t=>{e.style.top=t>0?"-100px":"0"};document.addEventListener("touchstart",t=>n=t.touches[0].clientY),document.addEventListener("touchmove",t=>o(t.touches[0].clientY-n)),document.addEventListener("wheel",t=>o(t.deltaY))});
+const postTitle=document.querySelector(".postTitle"),textContent=postTitle.textContent;postTitle.textContent="";let idx=0;const writeTimer=setInterval(()=>{postTitle.textContent=textContent.slice(0,idx++),idx>textContent.length&&(clearInterval(writeTimer),postTitle.classList.remove("no-blink"))},80);postTitle.classList.add("no-blink");const spoilers=document.querySelectorAll(".spoilerText");spoilers.length&&spoilers.forEach(t=>t.onclick=(()=>t.classList.toggle("clear"))),document.addEventListener("DOMContentLoaded",()=>{const t=document.createElement("div");t.id="checkBtn";const e=document.getElementById("toogleBtn"),n=document.getElementById("functionBtn");n.insertAdjacentElement("afterend",t),new IntersectionObserver(t=>{t.forEach(t=>{e.classList.toggle("active",!t.isIntersecting),n.classList.toggle("Btn-flex",!t.isIntersecting)})},{rootMargin:"300px 0px 0px 0px",threshold:0}).observe(t),e.addEventListener("click",()=>{n.style.top="0px"===n.style.top?"-64px":"0",e.style.transform="rotate(180deg)"===e.style.transform?"rotate(0deg)":"rotate(180deg)"})});
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("ArticleTOC").setAttribute("d","M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z");
+document.getElementById("pathSearch").setAttribute("d","M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z");
+{% if blogBase['showPostSource']==1 %}document.getElementById("pathIssue").setAttribute("d",IconList["github"]);{% endif %}
+{% if blogBase['commentNum']>0 -%}
+    cmButton=document.getElementById("cmButton");
+    span=document.createElement("span");
+    span.setAttribute("class","Counter");
+    span.innerHTML="{{ blogBase['commentNum'] }}";
+    cmButton.appendChild(span);
+{%- endif %}
+
+{% if blogBase['needComment']==1 %}
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+	cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","{{ blogBase['repoName'] }}");
+    script.setAttribute("issue-term","title");
+    {% if blogBase['themeMode']=='manual' %}
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    {% else %}
+    script.setAttribute("theme","{{ blogBase['nightTheme'] }}");
+    {% endif %}
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+openComments();
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+{%- endif %}
+
+{% if blogBase['highlight']!=0 -%}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display:inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+{%- endif %}
+
+</script>
+{{ blogBase['script'] }}
+{% endblock %}

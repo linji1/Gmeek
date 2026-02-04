@@ -35,7 +35,6 @@ body,#content,#functionBtn,.tagTitle,.title-left a,.subnav-search{-webkit-animat
     <div id="functionBtn">{% block functionBtn %}{% endblock %}</div>
     <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">{% include 'footer.html' %}</div>
-<script src="/blog/pluging/playBtn.js" type="text/javascript"></script>
 </body>
 <script>
 var IconList={{ IconList }};
@@ -69,4 +68,5 @@ if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
 {%- endif %}
 </script>
 {% block script %}{% endblock %}
+<script src="/blog/pluging/playBtn.js" type="text/javascript"></script>
 </html>
